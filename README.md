@@ -1,7 +1,8 @@
 syncAsync
 =========
 ###Usage
-######syncAsync serves to execute groups of functions in parallel, and chain multiple such groups in series.
+######syncAsync executes groups of functions in parallel, and chains multiple such groups in series.
+
     var sAs = require('path-to-module');
     sAs(function a(done){
         setTimeout(function(){
@@ -22,6 +23,8 @@ syncAsync
                me second
                lastly, me
     */
+sAs will pass a function (`done` in the example above) which must be called **once** to signal that execution is finished.  
+
 ####Parallel
 `sAs(a, b, c)` 
 > `a`, `b`, and `c` will execute at the same time
@@ -30,6 +33,9 @@ syncAsync
 `sAs(a)(b)(c)` 
 > once `a` completes, `b` will procede, and so on...  
 
-sAs will pass a function, `done` in the example above, which must be called **once** to signal that execution is finished.  
+####Together!
+`sAs(a)(b,c,d)(e,f)` and so on
+> Once `a` completes, `b`, `c`, and `d` will execute in parallel. Once that group finishes, `e` and `f` are next
+
 Any parallel/series combination is possible!
   
