@@ -37,5 +37,5 @@ sAs will pass a function (`done` in the example above) which must be called **on
 `sAs(a)(b,c,d)(e,f)` and so on
 > Once `a` completes, `b`, `c`, and `d` will execute in parallel. Once that group finishes, `e` and `f` are next
 
-Any parallel/series combination is possible!
+Note: currently broken.
   
