@@ -36,6 +36,4 @@ sAs will pass a function (`done` in the example above) which must be called **on
 ####Together!
 `sAs(a)(b,c,d)(e,f)` and so on
 > Once `a` completes, `b`, `c`, and `d` will execute in parallel. Once that group finishes, `e` and `f` are next
-
-Note: currently broken.
   
