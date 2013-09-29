@@ -1,9 +1,7 @@
 var EventEmitter = require('events').EventEmitter,
 globalContext = this;
 module.exports = function syncAsync(){
-    const firstEmitter = new EventEmitter(),
-    firstVarFn = _variablify(true);
-    return aux(firstEmitter, firstVarFn).apply(globalContext, arguments);
+    return aux(new EventEmitter(), variablify(true)).apply(globalContext, arguments);
     
     function aux(anEmitter, varFn){
         const newVarFn = _variablify(false),
@@ -18,7 +16,6 @@ module.exports = function syncAsync(){
         return function(){
             const args = Array.prototype.slice.call(arguments),
             counter = _countify(arguments.length, function(){
-                console.log('finished executing');
                 anEmitter.emit('done');
                 done(true);
             });
