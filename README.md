@@ -4,7 +4,7 @@ syncAsync
 ####syncAsync executes groups of functions in parallel, and chains multiple such groups in series.
 
 ****
-######In the examples below, letters represent functions. Each function is passed function `done` which is executed once to signal that the function has finished executing.  
+######In the examples below, letters represent functions. Each argument is passed a function `done` which is executed once to signal sAs to proceed. 
 For example:
 
     function a(done){
