@@ -4,7 +4,7 @@ syncAsync
 ####syncAsync executes groups of functions in parallel, and chains multiple such groups in series.
 
 ****
-######In the examples below, letters represent functions. Each function is passed function `done` which is executed once.  
+######In the examples below, letters represent functions. Each function is passed function `done` which is executed once to signal that the function has finished executing.  
 For example:
 
     function a(done){
@@ -25,24 +25,24 @@ For example:
 `sAs([a],[b],[c])`
 > once `a` completes, `b` will procede, and so on...  
 
-#####For Arrays
-Arrays can be nested within one call:  
+####For Arrays
+#####Arrays can be nested within one call:  
 `sAs([a,b,c],[d,e,f],[g,h,i])`
-> the first group (`a`, `b`, `c`) will execute in parallel. After it finishes, the next group will execute in the same manner.
+> the first group (`a`, `b`, `c`) will execute in parallel. After it finishes, the next group will execute in the same manner, and so on...
 
-Any dimension of arrays is acceptable  
+#####Any dimension of arrays is acceptable  
 `sAs([[a,b,c],[d,e,f],[g,h,i]])`
 
 > same as above
 
-Using arrays and plain functions together works too  
+#####Using arrays and plain functions together works too  
 `sAs([a,b,c],[d,e,f], g)`
 > the first and second array of functions will execute sequentially, `g` will not wait for both to finish before executing.
 
 ####Together!
 `sAs(a)(b,[c,d],[e,f])(g,h)` and so on, to your heart's content!
 
-###Example
+####Example
 
     var sAs = require('path-to-module');
     sAs(function a(done){
