@@ -1,7 +1,7 @@
 var EventEmitter = require('events').EventEmitter,
 globalContext = this;
 module.exports = function syncAsync(){
-    return aux(new EventEmitter(), variablify(true)).apply(globalContext, arguments);
+    return aux(new EventEmitter(), _variablify(true)).apply(globalContext, arguments);
     
     function aux(anEmitter, varFn){
         const newVarFn = _variablify(false),
