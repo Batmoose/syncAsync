@@ -1,20 +1,18 @@
 syncAsync
 =========
-###Usage
-####syncAsync executes groups of functions in parallel, and chains multiple such groups in series.
+
+####syncAsync is a light-weight control flow module that executes groups of functions in parallel and chains any number of such groups in series.
+
+`sAs` will both execute any number of functions in parallel (asynchronously) and also return itself. The returned copy will wait for the previous copy to finish executing before proceeding.
+###Details
+* Functions passed to `sAs` are themselves passed a function. Calling this function **once** tells `sAs` that execution is complete.
+* Any part of `sAs` can be safely stored in a variable for later use. Ex: `var storedForLater = sAs(a)(b,c);`
+* `sAs` supports arrays of functions. If multiple arrays are sent as arguments, an array will be treated like a group. Every function within one group will execute in parallel. Each group will wait for the previous to finish before executing.
 
 ****
-######In the examples below, letters represent functions. Each argument is passed a function `done` which is executed once to signal sAs to proceed. 
-For example:
 
-    function a(done){
-        setTimeout(function(){
-            //some stuff
-            done();    
-        }, 1000);
-    }
-
-
+###`sAs(a,b,c)...` ` sAs(a)(b)(c)...` and everything in between!
+*Letters used in the examples below represent functions.*
 ####Parallel
 `sAs(a, b, c)`  
 `sAs([a,b,c])`
@@ -25,24 +23,26 @@ For example:
 `sAs([a],[b],[c])`
 > once `a` completes, `b` will procede, and so on...  
 
-####For Arrays
-#####Arrays can be nested within one call:  
-`sAs([a,b,c],[d,e,f],[g,h,i])`
+####Together
+`sAs(a,b)(c,d,e)`
+
+###For Arrays
+######Multiple arrays can be passed within one call
+`sAs([a,b,c],[d,e,f],[g,h,i])`  
 > the first group (`a`, `b`, `c`) will execute in parallel. After it finishes, the next group will execute in the same manner, and so on...
 
-#####Any dimension of arrays is acceptable  
-`sAs([[a,b,c],[d,e,f],[g,h,i]])`
-
+######Any dimension of arrays is acceptable
+`sAs([[a,b,c],[d,e,f],[g,h,i]])`  
 > same as above
 
-#####Using arrays and plain functions together works too  
-`sAs([a,b,c],[d,e,f], g)`
+######Using arrays and plain functions together works too
+`sAs([a,b,c],[d,e,f], g)`  
 > the first and second array of functions will execute sequentially, `g` will not wait for both to finish before executing.
 
-####Together!
-`sAs(a)(b,[c,d],[e,f])(g,h)` and so on, to your heart's content!
+####Chain Away!
+`sAs(a,b,c)(d)([e,f],[g,h])` and so on, to your heart's content!
 
-####Example
+##Example
 
     var sAs = require('path-to-module');
     sAs(function a(done){
@@ -64,4 +64,3 @@ For example:
                me second
                lastly, me
     */
-######sAs will pass a function (`done` in the example above) which must be called **once** to signal that execution is finished.  
