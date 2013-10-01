@@ -8,6 +8,7 @@ syncAsync
 * Functions passed to `sAs` are themselves passed a function. Calling this function **once** tells `sAs` that execution is complete.
 * Any part of `sAs` can be safely stored in a variable for later use. Ex: `var storedForLater = sAs(a)(b,c);`
 * `sAs` supports arrays of functions. If multiple arrays are sent as arguments, an array will be treated like a group. Every function within one group will execute in parallel. Each group will wait for the previous to finish before executing.
+* `sAs` is itself asynchronous, multiple direct calls to sAs will execute in parallel. Ex: `sAs(a,b); sAs(c,d);` = `sAs(a,b,c,d)`
 
 #Usage
 ###`sAs(a,b,c)...` ` sAs(a)(b)(c)...` and everything in between!
@@ -26,16 +27,16 @@ syncAsync
 `sAs(a,b)(c,d,e)`
 
 ###For Arrays
-######Multiple arrays can be passed within one call
-`sAs([a,b,c],[d,e,f],[g,h,i])`  
+#####Multiple arrays can be passed within one call
+`sAs([a,b,c],[d,e,f],[g,h,i])` = `sAs(a,b,c)(d,e,f)(g,h,i)`
 > the first group (`a`, `b`, `c`) will execute in parallel. After it finishes, the next group will execute in the same manner, and so on...
 
 ######Any dimension of arrays is acceptable
 `sAs([[a,b,c],[d,e,f],[g,h,i]])`  
 > same as above
 
-######Using arrays and plain functions together works too
-`sAs([a,b,c],[d,e,f], g)`  
+#####Using arrays and plain functions together works too
+`sAs([a,b,c],[d,e,f], g)` = `sAs(a,b,c)(d,e,f); sAs(g);`
 > the first and second array of functions will execute sequentially, `g` will not wait for both to finish before executing.
 
 ####Chain Away!
