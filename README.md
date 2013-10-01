@@ -9,8 +9,7 @@ syncAsync
 * Any part of `sAs` can be safely stored in a variable for later use. Ex: `var storedForLater = sAs(a)(b,c);`
 * `sAs` supports arrays of functions. If multiple arrays are sent as arguments, an array will be treated like a group. Every function within one group will execute in parallel. Each group will wait for the previous to finish before executing.
 
-****
-
+#Usage
 ###`sAs(a,b,c)...` ` sAs(a)(b)(c)...` and everything in between!
 *Letters used in the examples below represent functions.*
 ####Parallel
