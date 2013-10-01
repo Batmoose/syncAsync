@@ -3,7 +3,7 @@ syncAsync
 
 ####syncAsync is a light-weight control flow module that executes groups of functions in parallel and chains any number of such groups in series.
 
-`sAs` will both execute any number of functions in parallel (asynchronously) and also return itself. The returned copy will wait for the previous copy to finish executing before proceeding.
+`sAs` will execute any number of functions in parallel (asynchronously) and return itself. The returned copy will wait for the previous copy to finish executing before proceeding.
 ###Details
 * Functions passed to `sAs` are themselves passed a function. Calling this function **once** tells `sAs` that execution is complete.
 * Any part of `sAs` can be safely stored in a variable for later use. Ex: `var storedForLater = sAs(a)(b,c);`
