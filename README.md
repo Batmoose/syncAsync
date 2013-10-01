@@ -8,7 +8,7 @@ syncAsync
 * Functions passed to `sAs` are themselves passed a function. Calling this function **once** tells `sAs` that execution is complete.
 * Any part of `sAs` can be safely stored in a variable for later use. Ex: `var storedForLater = sAs(a)(b,c);`
 * `sAs` supports arrays of functions. If multiple arrays are sent as arguments, an array will be treated like a group. Every function within one group will execute in parallel. Each group will wait for the previous to finish before executing.
-* `sAs` is itself asynchronous, multiple direct calls to sAs will execute in parallel. Ex: `sAs(a,b); sAs(c,d);` = `sAs(a,b,c,d)`
+* `sAs` is itself asynchronous; multiple direct calls to sAs will execute in parallel. Ex: `sAs(a,b); sAs(c,d);` = `sAs(a,b,c,d)`
 
 #Usage
 ###`sAs(a,b,c)...` ` sAs(a)(b)(c)...` and everything in between!
